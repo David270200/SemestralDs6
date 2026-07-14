@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">StyleByte</string>
+    <string name="logo_content_description">Logo de StyleByte</string>
 </resources>

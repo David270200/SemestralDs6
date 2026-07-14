@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Colores que ya usaba AppTheme y no existían: causaban error de compilación -->
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#1A1A1A</color>
+
+    <!-- Colores del splash -->
+    <color name="splash_background">#FFFFFF</color>
+    <color name="splash_text">#1A1A1A</color>
+    <color name="splash_accent">#000000</color>
 </resources>
