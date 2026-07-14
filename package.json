@@ -1,0 +1,25 @@
+{
+  "name": "semestralds6",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "expo": "~57.0.4",
+    "expo-status-bar": "~57.0.0",
+    "react": "19.2.3",
+    "react-native": "0.86.0"
+  },
+  "devDependencies": {
+    "@prisma/client": "^7.8.0",
+    "@types/react": "~19.2.2",
+    "prisma": "^7.8.0",
+    "typescript": "~6.0.3"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "private": true
+}
