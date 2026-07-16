@@ -1,5 +1,6 @@
 package com.example.stylebyte
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -64,11 +65,9 @@ class LoginActivity : AppCompatActivity() {
         }
 
         tabCreateAccount.setOnClickListener {
-            tabCreateAccount.setBackgroundResource(R.drawable.bg_tab_active)
-            tabCreateAccount.setTextColor(ContextCompat.getColor(this, R.color.white))
-            tabSignIn.background = null
-            tabSignIn.setTextColor(ContextCompat.getColor(this, R.color.tab_inactive_text))
-            // TODO: mostrar/ocultar campos adicionales de registro si aplica
+
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 
