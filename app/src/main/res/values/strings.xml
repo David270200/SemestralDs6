@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name"> </string>
     <string name="logo_content_description">Logo de StyleByte</string>
+
+    <!--Pantalla de Ordenes-->
+    <string name="order_history_title">Historial de Pedidos</string>
+    <string name="search_order_hint">Buscar pedido</string>
+    <string name="filter">Filtrar</string>
+    <string name="no_orders_yet">Aún no tienes pedidos</string>
+    <string name="start_shopping_message">Cuando realices una compra, aparecerá aquí</string>
+
+    <string name="status_delivered">Entregado</string>
+    <string name="status_pending">Pendiente</string>
+    <string name="status_shipped">Enviado</string>
+    <string name="status_cancelled">Cancelado</string>
+
+    <string name="view_details">Ver detalles</string>
+    <string name="order_total_label">Total del pedido:</string>
+
+
 </resources>

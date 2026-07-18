@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Colores que ya usaba AppTheme y no existían: causaban error de compilación -->
+    <!-- Colores que ya usaba AppTheme -->
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#1A1A1A</color>
@@ -10,17 +10,37 @@
     <color name="splash_text">#1A1A1A</color>
     <color name="splash_accent">#000000</color>
 
-        <!-- Paleta principal: negro + azul -->
-        <color name="navy_dark">#0D47A1</color>       <!-- Azul fuerte: botones, tab activo -->
-        <color name="navy_darker">#000000</color>     <!-- Negro puro: esquinas superiores de la imagen -->
-        <color name="white">#FFFFFF</color>
-        <color name="input_bg">#F2F3F5</color>
-        <color name="hint_gray">#9B9DA6</color>
-        <color name="label_gray">#8A8C94</color>
-        <color name="terms_link">#0D47A1</color>
-        <color name="overlay_black_60">#99000000</color>
-        <color name="tab_inactive_bg">#EDEEF1</color>
-        <color name="tab_inactive_text">#9B9DA6</color>
+    <!-- Paleta principal: negro + azul -->
+    <color name="navy_dark">#0D47A1</color>
+    <color name="navy_darker">#000000</color>
+    <color name="input_bg">#F2F3F5</color>
+    <color name="hint_gray">#9B9DA6</color>
+    <color name="label_gray">#8A8C94</color>
+    <color name="terms_link">#0D47A1</color>
+    <color name="overlay_black_60">#99000000</color>
+    <color name="tab_inactive_bg">#EDEEF1</color>
+    <color name="tab_inactive_text">#9B9DA6</color>
+
+    <!-- Paleta base compartida -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#1A1A1A</color>
+    <color name="gray">#757575</color>
+    <color name="light_gray">#BDBDBD</color>
+    <color name="divider_color">#E0E0E0</color>
+    <color name="placeholder_bg">#EAEAEA</color>
+
+    <!-- Estados del pedido -->
+    <color name="status_delivered_bg">#E6F4EA</color>
+    <color name="status_delivered_text">#1E7B34</color>
+
+    <color name="status_pending_bg">#FFF4E5</color>
+    <color name="status_pending_text">#B26A00</color>
+
+    <color name="status_shipped_bg">#E3F2FD</color>
+    <color name="status_shipped_text">#1565C0</color>
+
+    <color name="status_cancelled_bg">#FDECEA</color>
+    <color name="status_cancelled_text">#C62828</color>
 </resources>
 
 
