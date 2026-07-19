@@ -107,5 +107,14 @@ class LoginActivity : AppCompatActivity() {
 
         // TODO: reemplazar con tu lógica real de autenticación (API, Firebase, etc.)
         Toast.makeText(this, "Iniciando sesión...", Toast.LENGTH_SHORT).show()
+
+        // NUEVO: guardamos la sesión para que ProfileActivity pueda mostrar estos datos.
+        SessionManager(this).saveSession(name = email.substringBefore("@"), email = email)
+
+        // TEMPORAL: como HomeActivity todavía no existe, navegamos directo a Profile
+        // para poder probarla. Cuando exista Home, reemplaza la línea de abajo por:
+        // startActivity(Intent(this, HomeActivity::class.java))
+        startActivity(Intent(this, ProfileActivity::class.java))
+        finish()
     }
 }

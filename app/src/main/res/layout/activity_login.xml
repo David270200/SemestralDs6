@@ -270,15 +270,15 @@
                 app:layout_constraintTop_toTopOf="@id/tv_or"
                 app:layout_constraintBottom_toBottomOf="@id/tv_or" />
 
-            <!-- Boton Continuar como Invitado -->
+            <!-- Boton REGISTRARTE -->
             <Button
                 android:id="@+id/btn_guest"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginTop="22dp"
                 android:background="@drawable/bg_button_outline"
-                android:text="Continuar como invitado"
-                android:textColor="@color/white"
+                android:text="Registrate"
+                android:textColor="@color/navy_dark"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:textAllCaps="false"

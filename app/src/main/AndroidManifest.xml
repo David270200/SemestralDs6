@@ -34,6 +34,11 @@
         <activity
             android:name=".OrderHistoryActivity"
             android:exported="false" />
+
+        <!-- NUEVO: pantalla de Perfil -->
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
