@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!-- Order Status Chip (Top Left) -->
+        <!-- Order Status Chip -->
         <com.google.android.material.chip.Chip
             android:id="@+id/chipOrderStatus"
             style="@style/Widget.Material3.Chip.Assist.Elevated"
@@ -26,14 +26,14 @@
             android:layout_height="32dp"
             android:clickable="false"
             android:focusable="false"
+            android:text="Entregado"
             app:chipBackgroundColor="@color/status_delivered_bg"
             app:chipCornerRadius="16dp"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Entregado"
-            tools:textColor="@color/status_delivered_text" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Order Info Section (Top Right) -->
+        <!-- Order Info -->
         <LinearLayout
             android:id="@+id/llOrderInfo"
             android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.Material3.BodySmall"
                 android:textColor="@color/gray"
-                tools:text="28 de jun., 2024" />
+                android:text="28 de jun., 2024" />
 
             <TextView
                 android:id="@+id/tvOrderId"
@@ -59,22 +59,21 @@
                 android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                tools:text="ORD-2024-001" />
+                android:text="ORD-2024-001" />
         </LinearLayout>
 
-        <!-- Product Image Placeholder -->
+        <!-- Product Image -->
         <ImageView
             android:id="@+id/ivProductImage"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_product_placeholder"
-            android:contentDescription="@null"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chipOrderStatus" />
 
-        <!-- Product Details Section -->
+        <!-- Product Details -->
         <LinearLayout
             android:id="@+id/llProductDetails"
             android:layout_width="0dp"
@@ -93,7 +92,7 @@
                 android:maxLines="2"
                 android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
                 android:textColor="@color/black"
-                tools:text="Oversized Linen Blazer - Cream" />
+                android:text="Oversized Linen Blazer - Cream" />
 
             <TextView
                 android:id="@+id/tvQuantity"
@@ -102,7 +101,7 @@
                 android:layout_marginTop="4dp"
                 android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
                 android:textColor="@color/gray"
-                tools:text="Cantidad: 1" />
+                android:text="Cantidad: 1" />
 
             <TextView
                 android:id="@+id/tvDeliveryMethod"
@@ -111,8 +110,7 @@
                 android:layout_marginTop="4dp"
                 android:textAppearance="@style/TextAppearance.Material3.BodySmall"
                 android:textColor="@color/gray"
-                tools:text="Entrega: Pickup" />
-
+                android:text="Entrega: Pickup" />
         </LinearLayout>
 
         <!-- Divider -->
@@ -126,7 +124,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivProductImage" />
 
-        <!-- View Details Button (Bottom Left) -->
+        <!-- View Details Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnViewDetails"
             style="@style/Widget.Material3.Button.OutlinedButton"
@@ -139,7 +137,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dividerItemOrder" />
 
-        <!-- Total Price Section (Bottom Right) -->
+        <!-- Total Price -->
         <LinearLayout
             android:id="@+id/llTotalPrice"
             android:layout_width="wrap_content"
@@ -166,7 +164,7 @@
                 android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                tools:text="$89.99" />
+                android:text="$89.99" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

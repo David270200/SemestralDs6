@@ -45,8 +45,8 @@ class LoginActivity : AppCompatActivity() {
         btnSignIn.setOnClickListener { attemptSignIn() }
 
         btnGuest.setOnClickListener {
-            // TODO: navegar a la pantalla principal como invitado
-            Toast.makeText(this, "Continuando como invitado", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, OrderHistoryActivity::class.java)
+            startActivity(intent)
         }
 
         tvForgot.setOnClickListener {
