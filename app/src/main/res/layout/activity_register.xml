@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginBottom="40dp"
-            android:text="Create Account"
+            android:text="¡Regístrate!"
             android:textColor="@color/white"
             android:textSize="28sp"
             android:textStyle="bold"
@@ -67,7 +67,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="FULL NAME"
+                android:text="Nombre Completo"
                 android:textColor="@color/label_gray"
                 android:textSize="11sp"
                 android:textStyle="bold" />
@@ -78,7 +78,7 @@
                 android:layout_height="56dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_input_field"
-                android:hint="John Doe"
+                android:hint="Maria Marin"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp" />
 
@@ -86,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="EMAIL ADDRESS"
+                android:text="Correo Electrónico"
                 android:textColor="@color/label_gray"
                 android:textSize="11sp"
                 android:textStyle="bold" />
@@ -97,7 +97,7 @@
                 android:layout_height="56dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_input_field"
-                android:hint="hello@email.com"
+                android:hint="maria@gmail.com"
                 android:inputType="textEmailAddress"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp" />
@@ -106,7 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="PASSWORD"
+                android:text="Contraseña"
                 android:textColor="@color/label_gray"
                 android:textSize="11sp"
                 android:textStyle="bold" />
@@ -126,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="CONFIRM PASSWORD"
+                android:text="Confirmar Contraseña"
                 android:textColor="@color/label_gray"
                 android:textSize="11sp"
                 android:textStyle="bold" />
@@ -148,7 +148,7 @@
                 android:layout_height="56dp"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/bg_button_primary"
-                android:text="Create Account"
+                android:text="Crear Cuenta"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textAllCaps="false" />
@@ -159,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center"
-                android:text="Already have an account? Sign In"
+                android:text="¿Ya tienes una Cuenta? Inicia Sesión "
                 android:textColor="@color/navy_dark"
                 android:textStyle="bold" />
 
