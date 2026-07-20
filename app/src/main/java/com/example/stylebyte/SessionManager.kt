@@ -3,54 +3,58 @@ package com.example.stylebyte
 import android.content.Context
 
 /**
- * SessionManager: pequeña clase de utilidad para guardar y borrar la sesión del usuario.
+ * SessionManager: guarda la sesión real del usuario (token JWT + datos básicos)
+ * en SharedPreferences, para que sobreviva aunque el usuario cierre la app.
  *
- * ¿Por qué existe esta clase?
- * En Android, cuando necesitas guardar datos simples que sobrevivan aunque el usuario
- * cierre la app (como "¿hay alguien logueado?" o "¿cuál es su nombre?"), se usa
- * SharedPreferences: un almacenamiento tipo clave-valor que persiste en el dispositivo.
- *
- * Actualmente LoginActivity.kt NO guarda ninguna sesión al iniciar sesión (attemptSignIn()
- * solo valida el formulario y muestra un Toast). Por eso esta clase queda "preparada":
- * ProfileActivity ya puede usarla para cerrar sesión correctamente, pero para que el
- * flujo esté 100% completo, en el futuro habría que llamar a
- * SessionManager(this).saveSession(nombre, correo) dentro de LoginActivity.attemptSignIn()
- * cuando el login sea exitoso. Te explico esto más abajo en el chat, no lo hice porque
- * implicaría modificar un archivo existente y tú me pediste evitarlo salvo que sea
- * estrictamente necesario.
+ * Desde esta entrega, LoginActivity SÍ llama a saveSession(...) con los datos
+ * reales que devuelve la API (POST /auth/login), incluyendo el token JWT que
+ * se necesita para las llamadas protegidas (como el carrito).
  */
 class SessionManager(context: Context) {
 
     companion object {
         private const val PREFS_NAME = "stylebyte_session"
         private const val KEY_IS_LOGGED_IN = "is_logged_in"
+        private const val KEY_USER_ID = "user_id"
         private const val KEY_USER_NAME = "user_name"
         private const val KEY_USER_EMAIL = "user_email"
+        private const val KEY_USER_ROLE = "user_role"
+        private const val KEY_TOKEN = "auth_token"
     }
 
-    // getSharedPreferences crea (o abre si ya existe) un archivo privado de la app
-    // donde se guardan pares clave-valor. MODE_PRIVATE significa que solo esta app
-    // puede leer/escribir ese archivo.
     private val prefs = context.applicationContext
         .getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
-    /** Guarda que el usuario inició sesión, junto con su nombre y correo. */
-    fun saveSession(name: String, email: String) {
+    /**
+     * Guarda la sesión completa después de un login/registro exitoso contra la API.
+     * @param userId IdUsuario de SQL Server (necesario para las llamadas al carrito).
+     * @param role "Administrador" o "Cliente", tal como viene de la tabla Usuarios.
+     */
+    fun saveSession(userId: Int, name: String, email: String, role: String, token: String) {
         prefs.edit()
             .putBoolean(KEY_IS_LOGGED_IN, true)
+            .putInt(KEY_USER_ID, userId)
             .putString(KEY_USER_NAME, name)
             .putString(KEY_USER_EMAIL, email)
-            .apply() // apply() guarda en segundo plano (no bloquea la UI)
+            .putString(KEY_USER_ROLE, role)
+            .putString(KEY_TOKEN, token)
+            .apply()
     }
 
-    /** true si hay un usuario con sesión activa. */
     fun isLoggedIn(): Boolean = prefs.getBoolean(KEY_IS_LOGGED_IN, false)
 
-    /** Devuelve el nombre guardado, o un valor por defecto si no hay sesión. */
+    fun getUserId(): Int = prefs.getInt(KEY_USER_ID, -1)
+
     fun getUserName(): String = prefs.getString(KEY_USER_NAME, "Usuario") ?: "Usuario"
 
-    /** Devuelve el correo guardado, o un valor por defecto si no hay sesión. */
     fun getUserEmail(): String = prefs.getString(KEY_USER_EMAIL, "") ?: ""
+
+    fun getUserRole(): String = prefs.getString(KEY_USER_ROLE, "Cliente") ?: "Cliente"
+
+    fun isAdmin(): Boolean = getUserRole().equals("Administrador", ignoreCase = true)
+
+    /** Token JWT a enviar en el header "Authorization: Bearer <token>". Null si no hay sesión. */
+    fun getToken(): String? = prefs.getString(KEY_TOKEN, null)
 
     /** Borra todos los datos de sesión. Esto es lo que usa el botón "Sign Out". */
     fun clearSession() {

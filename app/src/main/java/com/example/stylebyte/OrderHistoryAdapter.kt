@@ -6,7 +6,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 
 class OrderHistoryAdapter(
-    private val orders: List<Order>
+    private val orders: List<Order>,
+    private val onViewDetails: (Order) -> Unit = {}
 ) : RecyclerView.Adapter<OrderHistoryAdapter.OrderViewHolder>() {
 
     class OrderViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
@@ -17,6 +18,7 @@ class OrderHistoryAdapter(
         val tvQuantity: android.widget.TextView = view.findViewById(R.id.tvQuantity)
         val tvDelivery: android.widget.TextView = view.findViewById(R.id.tvDeliveryMethod)
         val tvTotal: android.widget.TextView = view.findViewById(R.id.tvOrderTotalPrice)
+        val btnViewDetails: com.google.android.material.button.MaterialButton = view.findViewById(R.id.btnViewDetails)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {
@@ -42,6 +44,8 @@ class OrderHistoryAdapter(
         holder.chipStatus.setTextColor(
             ContextCompat.getColor(context, order.status.textColorRes)
         )
+
+        holder.btnViewDetails.setOnClickListener { onViewDetails(order) }
     }
 
     override fun getItemCount(): Int = orders.size

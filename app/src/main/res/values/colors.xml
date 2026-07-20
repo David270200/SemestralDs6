@@ -41,6 +41,19 @@
 
     <color name="status_cancelled_bg">#FDECEA</color>
     <color name="status_cancelled_text">#C62828</color>
+
+    <color name="status_preparing_bg">#EDE7F6</color>
+    <color name="status_preparing_text">#5E35B1</color>
+
+    <!-- Colores adicionales: catálogo, carrito, checkout, admin -->
+    <color name="cart_badge_bg">#C62828</color>
+    <color name="chip_selected_bg">#0D47A1</color>
+    <color name="chip_unselected_bg">#F2F3F5</color>
+    <color name="chip_unselected_text">#4A4C54</color>
+    <color name="admin_accent">#0D47A1</color>
+    <color name="success_green">#1E7B34</color>
+    <color name="warning_orange">#B26A00</color>
+    <color name="danger_red">#C62828</color>
 </resources>
 
 

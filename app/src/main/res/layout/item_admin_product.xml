@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="1dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/divider_color">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <ImageView
+            android:id="@+id/iv_admin_product_image"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_product_placeholder"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_admin_product_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            app:layout_constraintTop_toTopOf="@id/iv_admin_product_image"
+            app:layout_constraintStart_toEndOf="@id/iv_admin_product_image"
+            app:layout_constraintEnd_toStartOf="@id/ll_admin_product_actions"
+            tools:text="Oversized Linen Blazer - Cream" />
+
+        <TextView
+            android:id="@+id/tv_admin_product_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/gray"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_admin_product_name"
+            app:layout_constraintStart_toEndOf="@id/iv_admin_product_image"
+            app:layout_constraintEnd_toStartOf="@id/ll_admin_product_actions"
+            tools:text="Ropa" />
+
+        <TextView
+            android:id="@+id/tv_admin_product_price_stock"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/navy_dark"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_admin_product_category"
+            app:layout_constraintStart_toEndOf="@id/iv_admin_product_image"
+            app:layout_constraintEnd_toStartOf="@id/ll_admin_product_actions"
+            tools:text="$89.99 · Stock: 12" />
+
+        <LinearLayout
+            android:id="@+id/ll_admin_product_actions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/btn_edit_product"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_edit_pencil"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/btn_delete_product"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_delete_trash"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

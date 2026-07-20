@@ -1,5 +1,6 @@
 package com.example.stylebyte
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
@@ -7,7 +8,17 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.example.stylebyte.network.RetrofitClient
+import com.example.stylebyte.network.dto.RegisterRequestDto
+import com.example.stylebyte.network.extractErrorMessage
+import kotlinx.coroutines.launch
 
+/**
+ * Registro real contra SQL Server (tabla Usuarios), vía POST /auth/register.
+ * La API valida que el correo no exista y siempre crea el usuario con Rol
+ * = "Cliente" (no se puede registrar un Administrador desde aquí).
+ */
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var etName: EditText
@@ -30,6 +41,9 @@ class RegisterActivity : AppCompatActivity() {
         btnRegister = findViewById(R.id.btn_create_account)
         tvBackToLogin = findViewById(R.id.tv_back_to_login)
 
+        PasswordToggleHelper.attach(etPassword)
+        PasswordToggleHelper.attach(etConfirmPassword)
+
         btnRegister.setOnClickListener {
             registerUser()
         }
@@ -40,13 +54,12 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun registerUser() {
-
-        val nombre = etName.text.toString().trim()
+        val nombreCompleto = etName.text.toString().trim()
         val correo = etEmail.text.toString().trim()
         val password = etPassword.text.toString()
         val confirmar = etConfirmPassword.text.toString()
 
-        if (nombre.isEmpty()) {
+        if (nombreCompleto.isEmpty()) {
             etName.error = "Ingrese su nombre"
             etName.requestFocus()
             return
@@ -88,19 +101,47 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
-        guardarUsuario(nombre, correo, password)
+        // La tabla Usuarios separa Nombre y Apellido; el formulario solo pide
+        // "Nombre Completo", así que partimos por la primera palabra.
+        val partes = nombreCompleto.split(" ", limit = 2)
+        val nombre = partes[0]
+        val apellido = if (partes.size > 1) partes[1] else "-"
 
-        Toast.makeText(this, "Usuario registrado correctamente", Toast.LENGTH_SHORT).show()
+        btnRegister.isEnabled = false
 
-        finish()
-    }
-    private fun guardarUsuario(nombre: String, correo: String, password: String) {
+        lifecycleScope.launch {
+            try {
+                val response = RetrofitClient.authApi.register(
+                    RegisterRequestDto(nombre = nombre, apellido = apellido, correo = correo, password = password)
+                )
 
-        val datos = "$nombre,$correo,$password\n"
-
-        openFileOutput("usuarios.txt", MODE_APPEND).use {
-            it.write(datos.toByteArray())
+                if (response.isSuccessful && response.body() != null) {
+                    val body = response.body()!!
+                    SessionManager(this@RegisterActivity).saveSession(
+                        userId = body.usuario.IdUsuario,
+                        name = "${body.usuario.Nombre} ${body.usuario.Apellido}".trim(),
+                        email = body.usuario.Correo,
+                        role = body.usuario.Rol,
+                        token = body.token
+                    )
+                    Toast.makeText(this@RegisterActivity, "Cuenta creada correctamente", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this@RegisterActivity, HomeActivity::class.java))
+                    finish()
+                } else if (response.code() == 409) {
+                    etEmail.error = "Ya existe una cuenta con ese correo"
+                    etEmail.requestFocus()
+                } else {
+                    Toast.makeText(this@RegisterActivity, response.extractErrorMessage("No se pudo crear la cuenta"), Toast.LENGTH_LONG).show()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(
+                    this@RegisterActivity,
+                    "No se pudo conectar con la API. Verifica que el servidor esté corriendo.",
+                    Toast.LENGTH_LONG
+                ).show()
+            } finally {
+                btnRegister.isEnabled = true
+            }
         }
-
     }
 }

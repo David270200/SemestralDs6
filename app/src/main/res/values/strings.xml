@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"> </string>
+    <string name="app_name">StyleStore</string>
     <string name="logo_content_description">Logo de StyleByte</string>
 
     <!--Pantalla de Ordenes-->
@@ -11,10 +11,54 @@
 
     <string name="status_delivered">Entregado</string>
     <string name="status_pending">Pendiente</string>
+    <string name="status_preparing">Preparando</string>
     <string name="status_shipped">Enviado</string>
     <string name="status_cancelled">Cancelado</string>
 
     <string name="view_details">Ver detalles</string>
     <string name="order_total_label">Total del pedido:</string>
+
+    <!-- Home / Catálogo -->
+    <string name="search_hint">Buscar productos…</string>
+    <string name="all_categories">Todas</string>
+    <string name="add_to_cart">Agregar al carrito</string>
+    <string name="added_to_cart">Agregado al carrito</string>
+    <string name="no_products_found">No se encontraron productos</string>
+
+    <!-- Carrito -->
+    <string name="cart_title">Mi Carrito</string>
+    <string name="cart_empty">Tu carrito está vacío</string>
+    <string name="cart_empty_message">Agrega productos desde el catálogo para verlos aquí</string>
+    <string name="subtotal_label">Subtotal</string>
+    <string name="continue_to_checkout">Continuar al Checkout</string>
+
+    <!-- Checkout -->
+    <string name="checkout_title">Confirmar Pedido</string>
+    <string name="delivery_method_label">Método de entrega</string>
+    <string name="pickup_option">Retiro en tienda</string>
+    <string name="home_delivery_option">Envío a domicilio</string>
+    <string name="home_delivery_locked">Envío a domicilio disponible desde $50.00 en tu carrito</string>
+    <string name="delivery_fee_label">Costo de envío</string>
+    <string name="total_label">Total</string>
+    <string name="confirm_order">Confirmar Pedido</string>
+    <string name="order_confirmed">¡Pedido confirmado!</string>
+
+    <!-- Factura / Invoice -->
+    <string name="invoice_title">Factura</string>
+    <string name="invoice_order_number">Número de orden</string>
+    <string name="invoice_date">Fecha</string>
+    <string name="invoice_customer">Cliente</string>
+    <string name="invoice_status">Estado del pedido</string>
+    <string name="invoice_delivery_method">Método de entrega</string>
+    <string name="print_invoice">Imprimir Factura</string>
+    <string name="invoice_sent_to_print">Factura enviada a impresión</string>
+
+    <!-- Admin -->
+    <string name="admin_dashboard_title">Panel de Administración</string>
+    <string name="admin_products">Gestión de Productos</string>
+    <string name="admin_categories">Gestión de Categorías</string>
+    <string name="admin_orders">Gestión de Pedidos</string>
+    <string name="admin_users">Gestión de Usuarios</string>
+    <string name="admin_logout">Cerrar sesión de administrador</string>
 
 </resources>

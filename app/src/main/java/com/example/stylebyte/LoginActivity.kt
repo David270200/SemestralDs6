@@ -14,6 +14,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import com.example.stylebyte.network.RetrofitClient
+import com.example.stylebyte.network.dto.LoginRequestDto
+import com.example.stylebyte.network.extractErrorMessage
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
@@ -41,12 +46,13 @@ class LoginActivity : AppCompatActivity() {
 
         setupTabs()
         setupTermsLink()
+        PasswordToggleHelper.attach(etPassword)
 
         btnSignIn.setOnClickListener { attemptSignIn() }
 
         btnGuest.setOnClickListener {
-            val intent = Intent(this, OrderHistoryActivity::class.java)
-            startActivity(intent)
+            // Como invitado, lo natural es explorar el catálogo (Home) en vez del historial.
+            startActivity(Intent(this, HomeActivity::class.java))
         }
 
         tvForgot.setOnClickListener {
@@ -105,16 +111,49 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        // TODO: reemplazar con tu lógica real de autenticación (API, Firebase, etc.)
-        Toast.makeText(this, "Iniciando sesión...", Toast.LENGTH_SHORT).show()
+        btnSignIn.isEnabled = false
 
-        // NUEVO: guardamos la sesión para que ProfileActivity pueda mostrar estos datos.
-        SessionManager(this).saveSession(name = email.substringBefore("@"), email = email)
+        lifecycleScope.launch {
+            try {
+                val response = RetrofitClient.authApi.login(LoginRequestDto(correo = email, password = password))
 
-        // TEMPORAL: como HomeActivity todavía no existe, navegamos directo a Profile
-        // para poder probarla. Cuando exista Home, reemplaza la línea de abajo por:
-        // startActivity(Intent(this, HomeActivity::class.java))
-        startActivity(Intent(this, ProfileActivity::class.java))
-        finish()
+                if (response.isSuccessful && response.body() != null) {
+                    val body = response.body()!!
+                    val usuario = body.usuario
+
+                    SessionManager(this@LoginActivity).saveSession(
+                        userId = usuario.IdUsuario,
+                        name = "${usuario.Nombre} ${usuario.Apellido}".trim(),
+                        email = usuario.Correo,
+                        role = usuario.Rol,
+                        token = body.token
+                    )
+
+                    val destino = if (usuario.Rol.equals("Administrador", ignoreCase = true)) {
+                        AdminDashboardActivity::class.java
+                    } else {
+                        HomeActivity::class.java
+                    }
+
+                    Toast.makeText(this@LoginActivity, "¡Bienvenido, ${usuario.Nombre}!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this@LoginActivity, destino))
+                    finish()
+                } else {
+                    Toast.makeText(
+                        this@LoginActivity,
+                        response.extractErrorMessage("Correo o contraseña incorrectos"),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(
+                    this@LoginActivity,
+                    "No se pudo conectar con la API. Verifica que el servidor Node esté corriendo.",
+                    Toast.LENGTH_LONG
+                ).show()
+            } finally {
+                btnSignIn.isEnabled = true
+            }
+        }
     }
 }
